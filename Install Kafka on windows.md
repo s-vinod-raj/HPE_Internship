@@ -1,8 +1,6 @@
-### Watch on youtube: https://youtube.com/playlist?list=PLztMKKdMhujk2DiRXc0R37K4mLiuK7Whc
 
 #### Prerequisites java 8
-How to setup java in windows: https://youtu.be/3T-8UEZGm04
-![Kafka](images/java.png?raw=true "Kafka")
+
 ```javascript unzip file
 java -version
 javac -version
