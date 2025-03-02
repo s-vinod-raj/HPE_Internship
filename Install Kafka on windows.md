@@ -1,13 +1,3 @@
-
-#### Prerequisites java 8
-
-```javascript unzip file
-java -version
-javac -version
-echo %JAVA_HOME%
-```
-
-
 # Installing Kafka on Windows involves the following steps:
 
 #### Step 1:Download the latest version of Apache Kafka from the official website https://kafka.apache.org/downloads.
