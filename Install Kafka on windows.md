@@ -56,6 +56,7 @@ kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from
 .\bin\windows\kafka-topics.bat --bootstrap-server=localhost:9092 --list
 ```
 
-
+elasticsearch start
+elasticsearch-service.bat start
 
 
