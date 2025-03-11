@@ -22,42 +22,92 @@ Brokers are Kafka servers that store and manage topics. They handle producer req
 ### 3. Consumers
 Consumers subscribe to topics and retrieve messages from Kafka brokers. They can be grouped into **consumer groups**, allowing parallel processing and efficient load distribution.
 
-## Installation Guide
-To install Kafka, ensure you have **Java 8 or later** installed on your system.
+---
 
-1. Download the latest version of Kafka from the [Apache Kafka website](https://kafka.apache.org/downloads).
-2. Extract the downloaded package.
-3. Navigate to the Kafka directory.
+## Installation Guide
+
+### Installing Kafka on Windows
+
+Follow these steps to install Apache Kafka on Windows:
+
+#### Step 1: Download Kafka
+Download the latest version of Apache Kafka from the [official website](https://kafka.apache.org/downloads).
+
+#### Step 2: Extract the Kafka Package
+Extract the downloaded Kafka zip file to a directory of your choice (e.g., `C:\kafka`).
+
+```sh
+ tar -xvzf kafka_2.13-3.4.0.tgz
+```
+
+#### Step 3: Configure Zookeeper
+Navigate to the Kafka `config` folder and edit `zookeeper.properties`. Set the `dataDir` path:
+
+```properties
+ dataDir=C:/Kafka/kafka/zookeeper-data
+```
+
+#### Step 4: Configure Kafka Server
+Modify the `server.properties` file and update the log directory:
+
+```properties
+ log.dirs=C:/Kafka/kafka/kafka_logs
+```
+
+### Running Kafka Server
+
+#### Step 1: Start Zookeeper
+Kafka requires Zookeeper to manage the cluster and brokers. Open a PowerShell prompt and execute:
+
+```sh
+ .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+```
+
+Zookeeper will start on port 2181.
+
+#### Step 2: Start Kafka Server
+Open another PowerShell prompt, navigate to the Kafka folder, and run:
+
+```sh
+ .\bin\windows\kafka-server-start.bat .\config\server.properties
+```
+
+Your Kafka Server is now up and running.
+
+---
 
 ## Getting Started with Kafka
-Once installed, you can start a single Kafka broker instance and test its functionality.
 
-### 1. Start the Kafka Broker
-Execute the following command to launch a Kafka broker using the default configuration:
+### Step 1: Create a Kafka Topic
+Open a new command prompt in the `\bin\windows` directory and run:
+
 ```sh
-bin/kafka-server-start.sh config/server.properties
+ kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
 ```
 
-### 2. Create a Kafka Topic
-Run the following command to create a new topic named `my-topic`:
-```sh
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic my-topic
-```
-This creates a topic with a single partition and a replication factor of 1.
+### Step 2: Start a Kafka Producer
+To send messages to `test` topic, run:
 
-### 3. Produce Messages
-Start a Kafka producer to send messages to `my-topic`:
 ```sh
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-topic
+ kafka-console-producer.bat --broker-list localhost:9092 --topic test
 ```
-You can now type messages into the console, which will be sent to the Kafka topic.
 
-### 4. Consume Messages
-Start a Kafka consumer to read messages from `my-topic`:
+### Step 3: Start a Kafka Consumer
+To read messages from `test` topic, run:
+
 ```sh
-bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
+ kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
-This command displays all messages that have been published to the topic.
+
+### Step 4: List All Topics
+Verify all created topics by running:
+
+```sh
+ .\bin\windows\kafka-topics.bat --bootstrap-server=localhost:9092 --list
+```
+
+---
+
 
 ## Conclusion
 Apache Kafka is a robust platform for building scalable, high-performance data pipelines and real-time streaming applications. Its ability to handle large-scale event-driven architectures makes it an essential tool for modern data-driven enterprises.
@@ -68,6 +118,4 @@ Apache Kafka is a robust platform for building scalable, high-performance data p
 - [Official Kafka Documentation](https://kafka.apache.org/documentation/)
 - [Kafka GitHub Repository](https://github.com/apache/kafka)
 - [Kafka Tutorials & Guides](https://kafka.apache.org/documentation/#gettingStarted)
-
-
 
