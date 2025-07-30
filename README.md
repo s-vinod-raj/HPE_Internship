@@ -1,21 +1,3 @@
-Based on the image, your GitHub repository appears to include a Kafka + Elasticsearch streaming pipeline with the following files:
-
-README elasticsearch.md
-
-README kafka.md
-
-docker-compose.yml
-
-wiki_producer.py
-
-wiki_stream_processor.py
-
-
-Here's a combined README you can add to your repository root to explain the project clearly:
-
-
----
-
 📚 WIKI-KAFKA-ELASTICSEARCH PIPELINE
 
 This project implements a real-time streaming pipeline using Kafka and Elasticsearch. It fetches recent edits from Wikipedia, streams the data via Kafka, and indexes it into Elasticsearch for querying and visualization.
